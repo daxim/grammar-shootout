@@ -1,0 +1,7 @@
+S ⩴ S ';' T
+S ⩴ T
+T ⩴ 'id'
+T ⩴ V 'assign' E
+V ⩴ 'id'
+E ⩴ V
+E ⩴ 'num'

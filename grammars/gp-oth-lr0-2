@@ -1,0 +1,6 @@
+S ⩴ Parens
+S ⩴ StarParens
+Parens ⩴ '(' Parens ')'
+Parens ⩴ '(' ')'
+StarParens ⩴ '(' StarParens '*)'
+StarParens ⩴ '(' '*)'

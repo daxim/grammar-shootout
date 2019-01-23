@@ -1,0 +1,11 @@
+Value ⩴ 'number' V
+Value ⩴ 'number'
+V ⩴ 'f' Real
+V ⩴ 'i' Int
+Real ⩴ IOpt 'dot'
+Real ⩴ BOpt '+'
+Int ⩴ IOpt '+'
+Int ⩴ BOpt 'dot'
+BOpt ⩴ Opt
+IOpt ⩴ Opt
+Opt ⩴ ε

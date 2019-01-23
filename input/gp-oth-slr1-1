@@ -1,0 +1,30 @@
+id
+id add id
+let in id end
+id lpar id rpar
+id add id add id
+let in id end add id
+let in id add id end
+id lpar id rpar add id
+id lpar id add id rpar
+id add let in id end
+id add id lpar id rpar
+let in let in id end end
+let in id lpar id rpar end
+id lpar let in id end rpar
+id lpar id lpar id rpar rpar
+id add id add id add id
+let in id end add id add id
+let in id add id end add id
+let in id add id add id end
+id lpar id rpar add id add id
+id lpar id add id rpar add id
+id lpar id add id add id rpar
+id add let in id end add id
+id add let in id add id end
+id add id lpar id rpar add id
+id add id lpar id add id rpar
+id add id add let in id end
+id add id add id lpar id rpar
+id add let in id lpar id rpar end
+id add id lpar id lpar id rpar rpar

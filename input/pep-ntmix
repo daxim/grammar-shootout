@@ -1,0 +1,30 @@
+t w x
+v w x w x
+t t w x u
+v w x t w x u
+v t w x u w x
+t v w x w x u
+t t t w x u u
+v w x v w x w x u
+v w x t t w x u u
+v v w x w x u w x
+v t w x u t w x u
+v t t w x u u w x
+t v w x t w x u u
+t v t w x u w x u
+t t v w x w x u u
+t t t t w x u u u
+v w x v w x t w x u u
+v w x v t w x u w x u
+v w x t v w x w x u u
+v v w x w x u t w x u
+v v w x t w x u u w x
+v v t w x u w x u w x
+v t w x u v w x w x u
+v t v w x w x u u w x
+t v w x v w x w x u u
+t v v w x w x u w x u
+v w x v w x v w x w x u u
+v w x v v w x w x u w x u
+v v w x w x u v w x w x u
+v v w x v w x w x u u w x

@@ -1,0 +1,13 @@
+S ⩴ S ';' C
+S ⩴ '(' C ')'
+S ⩴ '*' D '*'
+C ⩴ A 'x'
+C ⩴ B 'y'
+D ⩴ A 'y'
+D ⩴ B 'x'
+A ⩴ E
+A ⩴ 'id'
+B ⩴ E
+B ⩴ 'num'
+E ⩴ '!'
+E ⩴ '(' S ')'

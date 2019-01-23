@@ -1,0 +1,11 @@
+E ⩴ 'd' D
+E ⩴ D
+E ⩴ F
+F ⩴ 'e' C
+F ⩴ C
+D ⩴ 'd' 'e' B 'b'
+D ⩴ 'e' A 'c'
+C ⩴ 'e' 'd' B 'c'
+C ⩴ 'd' A 'b'
+B ⩴ 'a'
+A ⩴ 'a'

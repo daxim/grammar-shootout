@@ -1,0 +1,30 @@
+
+id + *
+id + !
+id + num *
+( * * )
+( * ! )
+id + ( ) !
+( * num ! )
+( * ( ) * )
+id + num * id + *
+id + num * id + !
+id + * id + num *
+id + ! id + num *
+id + num * id + num *
+id + * ( * num ! )
+id + ! ( * num ! )
+( id + * * num ! )
+( id + ! * num ! )
+( * * id + num * )
+( * ! id + num * )
+id + num * id + ( ) !
+id + num * ( * num ! )
+id + ( id + num * ) !
+id + ( ) ! id + num *
+( id + num * * num ! )
+( * num ! id + num * )
+id + ( ) ! ( * num ! )
+( * num ! ( * num ! ) )
+( * ( ) * id + num * )
+( ( * num ! ) * num ! )

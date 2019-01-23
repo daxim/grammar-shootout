@@ -1,0 +1,6 @@
+S ⩴ 'id' Sprime
+Sprime ⩴ V 'assign' E
+Sprime ⩴ ε
+V ⩴ ε
+E ⩴ 'id' V
+E ⩴ 'num'

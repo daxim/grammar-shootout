@@ -1,0 +1,9 @@
+S ⩴ E
+E ⩴ B '+' T
+E ⩴ B '*' T
+E ⩴ T
+B ⩴ C
+C ⩴ D
+D ⩴ E
+T ⩴ X
+X ⩴ ε

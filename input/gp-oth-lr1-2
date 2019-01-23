@@ -1,0 +1,30 @@
+* num x *
+* id y *
+* ! y *
+* ! x *
+( num y )
+( id x )
+( ! y )
+( ! x )
+* num x * ; num y
+* num x * ; id x
+* id y * ; num y
+* id y * ; id x
+( num y ) ; num y
+( num y ) ; id x
+( id x ) ; num y
+( id x ) ; id x
+* ( * num x * ) y *
+* ( * id y * ) y *
+* ( ( num y ) ) y *
+* ( ( num y ) ) x *
+* ( ( id x ) ) y *
+* ( ( id x ) ) x *
+( ( * num x * ) y )
+( ( * num x * ) x )
+( ( * id y * ) y )
+( ( * id y * ) x )
+( ( ( num y ) ) y )
+( ( ( num y ) ) x )
+( ( ( id x ) ) y )
+( ( ( id x ) ) x )

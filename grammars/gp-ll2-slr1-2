@@ -1,0 +1,13 @@
+Line ⩴ Op
+Line ⩴ Label
+Op ⩴ Inst Operands
+Label ⩴ 'id' ':'
+Operands ⩴ Src Src Dest
+Dest ⩴ 'id'
+Dest ⩴ 'reg'
+Dest ⩴ '(' Src ')'
+Src ⩴ Dest
+Src ⩴ 'num'
+Inst ⩴ 'pneumonic'
+Inst ⩴ Macro
+Macro ⩴ 'id'

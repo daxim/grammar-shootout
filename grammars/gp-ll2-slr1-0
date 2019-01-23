@@ -1,0 +1,6 @@
+A ⩴ 'a' B
+A ⩴ 'a' A C
+A ⩴ ε
+B ⩴ 'd' B
+B ⩴ 'e'
+C ⩴ 'c' A

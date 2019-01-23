@@ -1,0 +1,228 @@
+Synopsis
+========
+
+Fulfill the Perl dependencies. Run:
+
+    rm -f reports/*.tap
+    perl Marpa-R2.pl knuth-op > reports/knuth-op__Marpa-R2.tap 2>&1
+    perl Pegex.pl knuth-op > reports/knuth-op__Pegex.tap 2>&1
+    ./make-report
+    $BROWSER comparison.html
+
+Fulfill all dependencies. Run:
+
+    rm -f reports/*.tap
+    for HARNESS_NAME in *.pl ; do
+        ls -1 grammars/* | parallel \
+            "perl $HARNESS_NAME {/} > reports/{/}__${HARNESS_NAME}.tap 2>&1" ;
+    done
+    ./make-report
+    $BROWSER comparison.html
+
+Description
+===========
+
+This project tests parsers with numerous grammars and inputs and generates a
+report table from the results.
+
+As of 2019-01, there are 8 parsers under test. There are 59 grammars with
+corresponding input and output files. Each input/output file has up to 30 lines.
+
+There are harnesses in the root directory, driving each parser. A harness takes
+a grammar file as input and generates source code for a parser in the
+`generated` directory. Example:
+
+    $PAGER grammars/knuth-op
+    perl Marpa-R2.pl grammars/knuth-op
+    $PAGER generated/knuth-op__Marpa-R2.pl
+
+The harness reads the input file, feeds each input to the parser and compares
+the parse result to the line in the output file. Example:
+
+    paste input/knuth-op output/knuth-op
+
+If an input has a set of possible parses, the output will be joined with a `␞`
+character.
+
+The comparison is emitted to stdout/stderr in TAP format.
+
+Finally, a report generator reads the TAP and creates HTML. In the `reports`
+directory it expects file names in the format
+`${GRAMMAR_NAME}__${HARNESS_NAME}.tap`. Examples are given above in the
+synopsis.
+
+Motivation
+==========
+
+Grammar parsers have a documentation problem. Very often, they do not tell the
+programmer who wants to use such a library which type of parser or algorithm
+the library uses under the hood, or at the very least mention the limitations.¹
+If the programmer wants to determine whether the library is suitable for his
+purposes, instead of deciding up-front he has no choice but to try out the
+software. Multiply this by every programmer who tries out the software. This is
+a colossal waste of time.
+
+There is another problem. Sometimes, the programmer not only parses input under
+his control, but passes the parser off to an end user. The end user supplies
+input unforeseen by the programmer, and the parser breaks. Sometimes, it turns
+out the grammar was not quite correct, and the programmer can amend the grammar.
+However sometimes, the grammar already was correct, and the flaw is inherent to
+the parser's algorithm, but the flaw exhibits only under certain input, and so
+there is nothing the programmer can do to fix it except switch over to a
+different parser that does not have the algorithmic flaw. Again this is a waste
+of time.
+
+A programmer should be able to make an informed decision which grammar parser
+is good to use, but the information is incomplete. The goal of this project is
+to make up for the short-comings in the grammar parser documentations in order
+to save the interested programmer some time. This is achieved not by amending
+the various documentations, but by torturing parsers with all kinds of grammars
+and a multitude of valid inputs and comparing the results.
+
+A programmer can then easily pick a grammar parser that passes the tests
+flawlessly. He can be much more confident that the parser will not break later.²
+For already existing software that contains a parser, the test results show
+scenarios where a grammar parser might break, and the programmer can be
+proactive about the problem without urgency, instead of being confronted out of
+the blue by a bug report from an end user.
+
+The documentation might mention the limitations in an abstract way that would be
+difficult to understand for some programmers, the comparison shows problems in
+the concrete which aids to understand them more easily.
+
+And lastly, this comparison also functions as a survey of the various APIs of
+the grammar parsers. By inspecting the generated code, a programmer can get feel
+how much effort it is to put a grammar to use with a certain grammar parser. My
+personal opinion is that software should reflect the motto: easy things easy,
+hard things possible. It should be straight-forward to get going with simple
+parsing tasks, yet the software should be powerful enough to solve the most
+difficult parsing tasks. Grammar parsers that have unwieldy APIs for no good
+reason or needlessly expose complexity to the programmer score badly in my mind.
+
+¹ There is at least one grammar parser documentation that outright lies to the
+programmer.
+
+² In fact, there are grammar parsers whose algorithm is proven to accept any
+CFG, that is to say the grammar parser is free of algorithmic limitations. It is
+very desirable to know which grammar parsers are in this category; if you have
+the choice to pick a grammar parser for a new project, why would you ever pick a
+flawed one?
+
+Requirements
+============
+
+Disk space
+----------
+
+About 200 MiB for locally installed dependencies and the various generated
+files.
+
+Dependencies
+------------
+
+Java
+
+    wget -P deps -c http://www.antlr.org/download/antlr-4.7.2-complete.jar
+    export CLASSPATH=`realpath deps/antlr-4.7.2-complete.jar`:$CLASSPATH
+
+Node
+
+    npm install --prefix deps antlr4 get-stdin
+    export NODE_PATH=`realpath deps/node_modules`:$NODE_PATH
+
+Perl
+
+Get `cpanm` from <https://cpanmin.us> or install `cpanminus` or
+`perl-App-cpanminus` from package manager.
+
+    cpanm -n -L deps/5 \
+        Capture::Tiny File::Slurper JSON::MaybeXS Kavorka List::AllUtils \
+        Marpa::R2 Moops Parse::Eyapp Pegex Regexp::Grammars TAP::Parser \
+        Text::Xslate Tie::Hash::Indexed
+    export PERL5LIB=`realpath deps/5/lib/perl5`:$PERL5LIB
+
+Perl 6
+
+    mkdir -p deps/6
+    zef install -to=deps/6 JSON::Fast
+    export PERL6LIB=`realpath deps/6`
+
+Shell
+
+    GNU parallel
+
+Troubleshooting
+===============
+
+Which harness does not work?
+----------------------------
+
+For Perl parsers, it is usually enough to compile:
+
+    › perl -c ${HARNESS_NAME}.pl
+    ${HARNESS_NAME}.pl syntax OK
+
+If the parser is in a different programming language, you need a proper trial:
+
+    › perl ${HARNESS_NAME}.pl trivial
+    ok 1 - trivial__${HARNESS_NAME}.pl a
+    1..1
+
+It is okay if you cannot satisfy all the dependencies. Simply exclude
+non-working harnesses from outputting to the `reports` directory because the
+test output is pointless.
+
+Why does a certain combination of parser/grammar/input not work?
+----------------------------------------------------------------
+
+First clean up: `rm -rf generated/`
+
+Run the harness with the grammar, e.g. `perl Pegex.pl knuth-op` and make note
+of the particular input line that fails:
+
+    not ok 3 - knuth-op__Pegex.pl a - a
+    #   Failed test 'knuth-op__Pegex.pl a - a'
+    #   at Pegex.pl line 152.
+    #          got: ''
+    #     expected: '["S",["E",["E",["T",["P","a"]]],"-",["T",["P","a"]]]]'
+
+You can now run the generated parser directly with a single input and use the
+usual debugging tools:
+
+    echo -n 'a - a' | perl generated/knuth-op__Pegex.pl
+
+Hacking
+=======
+
+During development of harnesses, set `PERL5OPT='-M5.024 -Mstrictures'` in the
+environment.
+
+Bugs
+====
+
+* Parser versions are not recorded.
+
+* Harnesses contain a lot of duplicated code, and it's modestly difficult to
+  find the common code for extraction.
+
+* There are too many Perl dependencies. Moops/Kavorka are not heavily used.
+  Perhaps switch over to alternatives that install faster.
+
+* There are no tests for the harnesses and report generator.
+
+* I had started with a templating engine for code generation in the harnesses,
+  but found it too difficult to debug and switched over to plain appending to a
+  variable. Maybe revisit if a templating engine with excellent debugging
+  capabilities can be found?
+
+* Dependencies should be split into the usual run-time, install time,
+  development phases.
+
+* Give each report a date identifier and archive the reports so that we can see
+  the improvement of parsers over time.
+
+* Determine the overhead of parsers in start-up time.
+
+* Test performance with large inputs and determine practical time complexity.
+
+* I should have a Makefile for the steps in the synopsis.

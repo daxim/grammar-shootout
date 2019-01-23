@@ -1,0 +1,30 @@
+id
+let id
+id lpar id rpar
+let lpar id rpar id
+id lpar let id rpar
+let lpar let id rpar id
+id lpar id lpar id rpar rpar
+let lpar id rpar lpar id rpar id
+let lpar id lpar id rpar rpar id
+id lpar let lpar id rpar id rpar
+id lpar id lpar let id rpar rpar
+let lpar let lpar id rpar id rpar id
+let lpar let id rpar lpar id rpar id
+let lpar id rpar lpar let id rpar id
+let lpar id lpar let id rpar rpar id
+id lpar let lpar let id rpar id rpar
+let lpar let id rpar lpar let id rpar id
+id lpar id lpar id lpar id rpar rpar rpar
+let lpar id rpar lpar id lpar id rpar rpar id
+let lpar id lpar id rpar rpar lpar id rpar id
+let lpar id lpar id lpar id rpar rpar rpar id
+id lpar let lpar id rpar lpar id rpar id rpar
+id lpar let lpar id lpar id rpar rpar id rpar
+id lpar id lpar let lpar id rpar id rpar rpar
+id lpar id lpar id lpar let id rpar rpar rpar
+let lpar id lpar id lpar let id rpar rpar rpar id
+id lpar let lpar id lpar let id rpar rpar id rpar
+id lpar id lpar let lpar let id rpar id rpar rpar
+id lpar id lpar id lpar id lpar id rpar rpar rpar rpar
+id lpar id lpar id lpar id lpar let id rpar rpar rpar rpar

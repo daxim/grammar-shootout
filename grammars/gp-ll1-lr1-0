@@ -1,0 +1,9 @@
+S ⩴ 'a' A
+S ⩴ 'b' B
+A ⩴ C 'a'
+A ⩴ D 'b'
+B ⩴ C 'b'
+B ⩴ D 'a'
+C ⩴ E
+D ⩴ E
+E ⩴ ε

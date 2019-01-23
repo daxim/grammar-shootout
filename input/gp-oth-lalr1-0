@@ -1,0 +1,30 @@
+id
+id assign num
+id assign id
+id ; id
+id assign num ; id
+id assign id ; id
+id ; id assign num
+id ; id assign id
+id ; id ; id
+id assign num ; id assign num
+id assign num ; id assign id
+id assign num ; id ; id
+id assign id ; id assign num
+id assign id ; id assign id
+id assign id ; id ; id
+id ; id assign num ; id
+id ; id assign id ; id
+id ; id ; id assign num
+id ; id ; id assign id
+id ; id ; id ; id
+id assign num ; id assign num ; id
+id assign num ; id ; id assign num
+id assign num ; id ; id assign id
+id assign num ; id ; id ; id
+id ; id assign num ; id assign num
+id ; id assign num ; id assign id
+id ; id assign num ; id ; id
+id ; id ; id assign num ; id
+id ; id ; id ; id assign num
+id ; id ; id ; id ; id

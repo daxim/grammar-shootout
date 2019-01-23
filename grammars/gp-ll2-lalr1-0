@@ -1,0 +1,5 @@
+S ⩴ 'id'
+S ⩴ V 'assign' E
+V ⩴ 'id'
+E ⩴ V
+E ⩴ 'num'

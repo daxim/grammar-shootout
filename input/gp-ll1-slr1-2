@@ -1,0 +1,30 @@
+volatile id
+void id
+typedef id
+static id
+short id
+int id
+const id
+volatile * id
+void typedef id
+void static id
+void * id
+typedef volatile id
+typedef void id
+typedef typedef id
+typedef static id
+typedef short id
+typedef int id
+typedef const id
+typedef * id
+static volatile id
+static void id
+static typedef id
+static static id
+static short id
+static int id
+static const id
+static * id
+short * id
+int * id
+const * id

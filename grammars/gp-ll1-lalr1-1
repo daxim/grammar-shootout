@@ -1,0 +1,5 @@
+L ⩴ V '+' L
+L ⩴ 'num'
+V ⩴ Var '(' Var '+' V ')'
+V ⩴ ε
+Var ⩴ ε

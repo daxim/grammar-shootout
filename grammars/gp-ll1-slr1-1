@@ -1,0 +1,4 @@
+S ⩴ 'for' '(' ExprOpt ';' ExprOpt ';' ExprOpt ')' S
+S ⩴ 'expr' ';'
+ExprOpt ⩴ 'expr'
+ExprOpt ⩴ ε

@@ -1,0 +1,15 @@
+S ⩴ NP VP
+DP ⩴ D N
+NP ⩴ DP
+NP ⩴ DP PP
+NP ⩴ N
+PP ⩴ P DP
+VP ⩴ V NP
+VP ⩴ V NP PP
+D → 'a'
+D → 'the'
+N → 'I'
+N → 'man'
+N → 'telescope'
+P → 'with'
+V → 'saw'

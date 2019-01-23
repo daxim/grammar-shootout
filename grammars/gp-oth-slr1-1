@@ -1,0 +1,11 @@
+EXP ⩴ EXP 'add' TERM
+EXP ⩴ TERM
+TERM ⩴ 'id'
+TERM ⩴ 'id' INDEX
+TERM ⩴ 'let' STMTS 'in' EXP 'end'
+STMTS ⩴ STMTS STMT
+STMTS ⩴ ε
+STMT ⩴ LEXP 'assign' EXP 'semi'
+LEXP ⩴ LEXP INDEX
+LEXP ⩴ 'id'
+INDEX ⩴ 'lpar' EXP 'rpar'

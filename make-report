@@ -1,0 +1,111 @@
+#!/usr/bin/env perl
+use 5.024;
+use utf8;
+use strictures;
+use File::Slurper qw(read_binary);
+use List::AllUtils qw(uniq);
+use TAP::Parser qw();
+use Text::Xslate qw();
+
+my $r;
+my (@grammars, @parsers);
+for my $file (glob 'reports/*__*.tap') {
+    my $parser = TAP::Parser->new({source => $file});
+    my @tests;
+    my $idx = 0;
+    while (my $result = $parser->next) {
+        last if $result->is_plan;
+        $idx++ if $result->is_test;
+        $tests[$idx] .= $result->as_string . "\n";
+    }
+    shift @tests unless $tests[0];
+    $file =~ s|^reports/||;
+    $file =~ s/\.tap$//;
+    my ($g, $p) = split '__', $file;
+    push @grammars, $g;
+    push @parsers, $p;
+    $r->{$g}{$p} = \@tests;
+}
+
+my $tx = Text::Xslate->new(
+    function => {
+        ok => sub { $_[0] =~ /^ok/ }
+    }
+);
+my $vars = {
+    r => $r,
+    parsers => [sort, uniq @parsers],
+    grammars => [sort, uniq @grammars],
+};
+open my $fh, '>:encoding(UTF-8)', 'comparison.html' or die "report.html: $!";
+$fh->print($tx->render_string(<<~'...', $vars));
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<style>
+    table, tr, th, td { border: 2px inset; }
+    td { vertical-align: top; }
+    code {
+        display: block; white-space: pre-wrap; background: #fcb;
+        margin-bottom: 0.7em;
+    }
+    code.ok { background: #bfd; }
+    code.collapse { display: inline-block; width: 1em; height: 1em; }
+    code.collapse:after { content: '✘'; }
+    code.ok.collapse:after { content: '✔'; }
+</style>
+<script src="jquery-3.3.1.slim.min.js"></script>
+<script>
+let collapse = button => {
+    button.parent().parent().find('td').each(
+        (idx,td) => {
+            $(td).find('code').each(
+                (idx,code) => {
+                    let c = $(code);
+                    if (c.hasClass('collapse')) {
+                        c.removeClass('collapse');
+                        c.html(
+                            c.html().replace(/^<!--/, '').replace(/-->$/, '')
+                        );
+                    } else {
+                        c.addClass('collapse');
+                        c.html('<!--' + c.html() + '-->');
+                    }
+                }
+            )
+        }
+    );
+};
+$(() => {
+    $('button').each((idx,button) => collapse($(button)));
+    $('button').click(ev => collapse($(ev.target)))
+});
+</script>
+</head>
+<html>
+    <table>
+        <tr>
+            <th>grammar</th>
+: for $parsers -> $p {
+            <th><: $p :></th>
+: }
+        </tr>
+: for $grammars -> $g {
+        <tr>
+            <td><: $g :><button>⮕</button></td>
+    : for $parsers -> $p {
+            <td>
+        : for $r[$g][$p] -> $test {
+                <code
+            : if ok($test) {
+                class="ok"
+            : }
+                ><:$test:></code>
+        : }
+            </td>
+    : }
+        </tr>
+: }
+    </table>
+</html>
+...

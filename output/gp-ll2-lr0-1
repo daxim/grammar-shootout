@@ -1,0 +1,4 @@
+["S",["Inc",["Lv","id"],"//"]]
+["S",["Inc",["Lv","id"],"++"]]
+["S",["Assign",["Lv","id"],"equals",["Rv","num"]]]
+["S",["Assign",["Lv","id"],"equals",["Rv",["Lv","id"]]]]

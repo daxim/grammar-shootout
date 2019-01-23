@@ -1,0 +1,7 @@
+S ⩴ 'mary' Owns Object
+Owns ⩴ 'had'
+Object ⩴ 'a' Animal
+Animal ⩴ Adverb Adjective Noun
+Adverb ⩴ ε
+Adjective ⩴ 'little'
+Noun ⩴ 'lamb'

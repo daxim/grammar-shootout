@@ -1,0 +1,26 @@
+num
+star num
+star star num
+num mult num
+num add num
+lpar num rpar
+star num mult num
+star num add num
+star lpar num rpar
+num mult star num
+num add star num
+lpar star num rpar
+num mult num mult num
+num mult num add num
+num mult lpar num rpar
+num add num mult num
+num add num add num
+num add lpar num rpar
+lpar num rpar mult num
+lpar num rpar add num
+lpar num mult num rpar
+lpar num add num rpar
+lpar lpar num rpar rpar
+lpar star lpar num rpar rpar
+lpar lpar star num rpar rpar
+lpar lpar lpar num rpar rpar rpar

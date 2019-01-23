@@ -1,0 +1,8 @@
+S ⩴ Assign
+S ⩴ Inc
+Assign ⩴ Lv 'equals' Rv
+Inc ⩴ Lv '++'
+Inc ⩴ Lv '//'
+Rv ⩴ Lv
+Rv ⩴ 'num'
+Lv ⩴ 'id'

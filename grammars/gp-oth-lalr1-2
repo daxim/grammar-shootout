@@ -1,0 +1,6 @@
+E ⩴ O ':' OL
+E ⩴ O
+O ⩴ 'id'
+O ⩴ OL 'l'
+OL ⩴ 'id'
+OL ⩴ '(' O ':' OL ')'

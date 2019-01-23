@@ -1,0 +1,5 @@
+S ⩴ '(' Ses ')'
+S ⩴ '(*' '*)'
+Ses ⩴ S SL
+SL ⩴ ';' SL
+SL ⩴ S

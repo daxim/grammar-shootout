@@ -1,0 +1,6 @@
+Sprime ⩴ S
+S ⩴ L 'assign' R
+S ⩴ R
+L ⩴ '*' R
+L ⩴ 'id'
+R ⩴ L

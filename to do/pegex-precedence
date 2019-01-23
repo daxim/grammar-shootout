@@ -1,0 +1,7 @@
+Expr = AddSub
+AddSub = MulDiv+ % /[+-]/
+MulDiv = Power+ % /[*/]/
+Power = Token+ % /^/
+Token = /'('/ Expr /')'/
+Token = Number
+Number = /( '-'? DIGIT+ )/

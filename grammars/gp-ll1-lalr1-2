@@ -1,0 +1,8 @@
+P ⩴ M '*'
+P ⩴ ε
+M ⩴ Q StarM
+M ⩴ ε
+StarM ⩴ '(*' M '*)'
+StarM ⩴ '(' Q '*' ')'
+Q ⩴ 'o'
+Q ⩴ ε

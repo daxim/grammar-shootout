@@ -1,0 +1,30 @@
+id :
+pneumonic reg num reg
+pneumonic reg num id
+pneumonic num reg reg
+pneumonic num reg id
+pneumonic num num reg
+pneumonic num num id
+pneumonic num id reg
+pneumonic num id id
+pneumonic id reg id
+pneumonic id num reg
+pneumonic id num id
+pneumonic id id reg
+pneumonic id id id
+id num reg reg
+id num reg id
+id num num reg
+id num num id
+id num id reg
+id num id id
+pneumonic reg num ( num )
+pneumonic num reg ( num )
+pneumonic num num ( reg )
+pneumonic num num ( num )
+pneumonic num num ( id )
+pneumonic num id ( num )
+pneumonic num ( num ) reg
+pneumonic num ( num ) id
+pneumonic id num ( num )
+id num num ( num )

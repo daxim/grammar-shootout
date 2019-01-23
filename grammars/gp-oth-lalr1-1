@@ -1,0 +1,5 @@
+L ⩴ V '(' 'args' ')'
+L ⩴ L 'equals' Var '(' ')'
+V ⩴ Var '+' V
+V ⩴ 'id'
+Var ⩴ 'id'
