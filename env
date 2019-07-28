@@ -1,0 +1,5 @@
+export CLASSPATH=`realpath deps/antlr-4.7.2-complete.jar`:$CLASSPATH
+export NODE_PATH=`realpath deps/node_modules`:$NODE_PATH
+export PATH=`realpath deps/node_modules/.bin`:`realpath deps/5/bin`:$PATH
+export PERL5LIB=`realpath deps/5/lib/perl5`:$PERL5LIB
+export PERL6LIB=`realpath deps`,inst#`realpath deps/6`

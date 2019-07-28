@@ -25,7 +25,7 @@ Description
 This project tests parsers with numerous grammars and inputs and generates a
 report table from the results.
 
-As of 2019-01, there are 8 parsers under test. There are 59 grammars with
+As of 2019-04, there are 9 parsers under test. There are 62 grammars with
 corresponding input and output files. Each input/output file has up to 30 lines.
 
 There are harnesses in the root directory, driving each parser. A harness takes
@@ -91,13 +91,14 @@ difficult to understand for some programmers, the comparison shows problems in
 the concrete which aids to understand them more easily.
 
 And lastly, this comparison also functions as a survey of the various APIs of
-the grammar parsers. By inspecting the generated code, a programmer can get feel
-how much effort it is to put a grammar to use with a certain grammar parser. My
-personal opinion is that software should reflect the motto: easy things easy,
-hard things possible. It should be straight-forward to get going with simple
-parsing tasks, yet the software should be powerful enough to solve the most
-difficult parsing tasks. Grammar parsers that have unwieldy APIs for no good
-reason or needlessly expose complexity to the programmer score badly in my mind.
+the grammar parsers. By inspecting the generated code, a programmer can get a
+feel for how much effort it is to put a grammar to use with a certain grammar
+parser. My personal opinion is that software should reflect the motto: easy
+things easy, hard things possible. It should be straight-forward to get going
+with simple parsing tasks, yet the software should be powerful enough to solve
+the most difficult parsing tasks. Grammar parsers that have unwieldy APIs for no
+good reason or needlessly expose complexity to the programmer score badly in my
+mind.
 
 ¹ There is at least one grammar parser documentation that outright lies to the
 programmer.
@@ -127,8 +128,9 @@ Java
 
 Node
 
-    npm install --prefix deps antlr4 get-stdin
+    npm install --prefix deps antlr4 get-stdin pegjs
     export NODE_PATH=`realpath deps/node_modules`:$NODE_PATH
+    export PATH=`realpath deps/node_modules/.bin`:$PATH
 
 Perl
 
@@ -137,15 +139,17 @@ Get `cpanm` from <https://cpanmin.us> or install `cpanminus` or
 
     cpanm -n -L deps/5 \
         Capture::Tiny File::Slurper JSON::MaybeXS Kavorka List::AllUtils \
-        Marpa::R2 Moops Parse::Eyapp Pegex Regexp::Grammars TAP::Parser \
-        Text::Xslate Tie::Hash::Indexed
+        Marpa::R2 Moops Parse::Eyapp Parse::RecDescent Pegex Regexp::Grammars \
+        TAP::Parser Text::Xslate Tie::Hash::Indexed
     export PERL5LIB=`realpath deps/5/lib/perl5`:$PERL5LIB
+    export PATH=`realpath deps/5/bin`:$PATH
 
 Perl 6
 
     mkdir -p deps/6
     zef install -to=deps/6 JSON::Fast
-    export PERL6LIB=`realpath deps/6`
+    cp ../Zuversicht.pm6 deps # from github.com/daxim
+    export PERL6LIB=`realpath deps`,inst#`realpath deps/6`
 
 Shell
 

@@ -40,36 +40,32 @@ my $vars = {
 open my $fh, '>:encoding(UTF-8)', 'comparison.html' or die "report.html: $!";
 $fh->print($tx->render_string(<<~'...', $vars));
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <style>
     table, tr, th, td { border: 2px inset; }
     td { vertical-align: top; }
-    code {
-        display: block; white-space: pre-wrap; background: #fcb;
-        margin-bottom: 0.7em;
-    }
-    code.ok { background: #bfd; }
-    code.collapse { display: inline-block; width: 1em; height: 1em; }
-    code.collapse:after { content: '✘'; }
-    code.ok.collapse:after { content: '✔'; }
+    p { background: #fcb; }
+    p.ok { background: #bfd; }
+    p.collapse { display: inline-block; }
+    p.collapse:after { content: '✘'; }
+    p.ok.collapse:after { content: '✔'; }
+    code { white-space: pre-wrap; }
+    .collapse > code { display: none; }
 </style>
-<script src="jquery-3.3.1.slim.min.js"></script>
+<script src="jquery-3.4.1.slim.min.js"></script>
 <script>
 let collapse = button => {
     button.parent().parent().find('td').each(
-        (idx,td) => {
-            $(td).find('code').each(
-                (idx,code) => {
-                    let c = $(code);
-                    if (c.hasClass('collapse')) {
-                        c.removeClass('collapse');
-                        c.html(
-                            c.html().replace(/^<!--/, '').replace(/-->$/, '')
-                        );
+        (_,td) => {
+            $(td).find('p').each(
+                (_,pelem) => {
+                    let p = $(pelem);
+                    if (p.hasClass('collapse')) {
+                        p.removeClass('collapse');
                     } else {
-                        c.addClass('collapse');
-                        c.html('<!--' + c.html() + '-->');
+                        p.addClass('collapse');
                     }
                 }
             )
@@ -82,7 +78,7 @@ $(() => {
 });
 </script>
 </head>
-<html>
+<body>
     <table>
         <tr>
             <th>grammar</th>
@@ -96,16 +92,17 @@ $(() => {
     : for $parsers -> $p {
             <td>
         : for $r[$g][$p] -> $test {
-                <code
+                <p
             : if ok($test) {
                 class="ok"
             : }
-                ><:$test:></code>
+                ><code><:$test:></code></p>
         : }
             </td>
     : }
         </tr>
 : }
     </table>
+</body>
 </html>
 ...
